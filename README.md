@@ -15,7 +15,7 @@ Or maybe you are lucky and the installer left you a spreadsheet with all of this
   * Hubitat
   * Standard or Compact CCU
   * A working IP->serial converter.  You can buy one, or you could build one with a Raspberry Pi, a usb->serial dongle, and the "socat" command.  9600 8N1
-  * LiteTouch integration cable.  You can make this with pins 2, 3, and 5 straight through.  If you want polling to work, you will need to bridge pins 7 & 8 at the CCU side (don't hook them up to your Vera).  The best way to make a cable is to get 2 RJ45->RS232 converters (ask your favorite network guy, he's got a drawer full)
+  * LiteTouch integration cable.  You can make this with pins 2, 3, and 5 straight through.  If you want polling to work, you will need to bridge pins 7 & 8 at the CCU side (don't hook them up to your serial converter).  The best way to make a cable is to get 2 RJ45->RS232 converters (ask your favorite network guy, he's got a drawer full)
 
 ## = Setup = 
   * Install the driver, copy the code or the link to the code into the Drivers section of your Hubitat
@@ -23,12 +23,12 @@ Or maybe you are lucky and the installer left you a spreadsheet with all of this
   * Edit your new device and set the IP/port, *RelayLoads*, and *DimmerLoads* variables.  Enter them as a comma separated list with no spaces, for example: "07-1,07-2,07-3,07-4,07-5,07-6,08-1,08-2,08-3,08-4,08-5,08-6,09-1,09-2,10-1,10-2,10-3,10-4,10-5,10-6"
   * Click save
 
-Now all of your devices will show up.  As they are polled, the statuses will start updating.  Setting a load through Hubitat will poll the device immediately.  Otherwise, polling runs down a list of loads and polls one every two seconds, only to start back at the top after they've all been polled.  There are some limitations in the serial protocol which forced it to be done this way.  This means that if you have 48 total loads and you change one with a wall keypad, it could take up to 96 seconds for the Vera to pick it up.  
+Now all of your devices will show up.  As they are polled, the statuses will start updating.  Setting a load through Hubitat will poll the device immediately.  Otherwise, polling runs down a list of loads and polls one every two seconds, only to start back at the top after they've all been polled.  There are some limitations in the serial protocol which forced it to be done this way.  This means that if you have 48 total loads and you change one with a wall keypad, it could take up to 96 seconds for the Hubitat to pick it up.  
 
 You can now name your devices and start using them in Rules, Scenes, and Dashboards.
 
 # = Making the cable = 
-The LiteTouch system has TWO different serial cables.  There's a programming cable, and an integration cable.  The programming cable is used for LiteWare.  It has pins 2, 3, and 5 straight though, and pins 7&8 are crossed end to end.  The implementation cable is the same, except pins 7&8 are not connected to the vera side at all, but are bridged together on the CCU side.
+The LiteTouch system has TWO different serial cables.  There's a programming cable, and an integration cable.  The programming cable is used for LiteWare.  It has pins 2, 3, and 5 straight though, and pins 7&8 are crossed end to end.  The implementation cable is the same, except pins 7&8 are not connected to the serial converter side at all, but are bridged together on the CCU side.
 
 The easiest way to do this is to get a couple of RJ45->RS232 adapters.  Cisco and Juniper ship them with every piece of network equipment, so if you know an IT guy, he can get them for you.  Or, you can order them off amazon.  Connect them together with a standard ethernet cable (not a crossover).  Then, pop the plug out of one end, cut the wires for pins 7&8 and twist them together and tape.  Plug the modified end into the CCU.
 
