@@ -13,14 +13,16 @@ Or maybe you are lucky and the installer left you a spreadsheet with all of this
 
 ## = Requirements =
   * Hubitat
-  * Standard or Compact CCU
-  * A working IP->serial converter.  You can buy one, or you could build one with a Raspberry Pi, a usb->serial dongle, and the "socat" command.  9600 8N1
+  * Standard or Compact CCU (NOT an LT5000 controller, it uses a different protocol)
+  * A working IP->serial converter.  You can buy one, or you could build one with a Raspberry Pi, a usb->serial dongle, and the "socat" command.  9600 8N1 (e.g. "socat -d -d TCP-LISTEN:2001,fork,reuseaddr /dev/ttyUSB0,raw,echo=0,b9600,cs8,parenb=0,clocal=1")
   * LiteTouch integration cable.  You can make this with pins 2, 3, and 5 straight through.  If you want polling to work, you will need to bridge pins 7 & 8 at the CCU side (don't hook them up to your serial converter).  The best way to make a cable is to get 2 RJ45->RS232 converters (ask your favorite network guy, he's got a drawer full)
 
 ## = Setup = 
-  * Install the driver, copy the code or the link to the code into the Drivers section of your Hubitat
-  * Create a new device, selecting the LiteTouch 2000 for the Device Type
-  * Edit your new device and set the IP/port, *RelayLoads*, and *DimmerLoads* variables.  Enter them as a comma separated list with no spaces, for example: "07-1,07-2,07-3,07-4,07-5,07-6,08-1,08-2,08-3,08-4,08-5,08-6,09-1,09-2,10-1,10-2,10-3,10-4,10-5,10-6"
+  * Install the driver, copy the code or the link to the code into the Drivers Code section of your Hubitat
+  * Install the app, copy the code or link into the Apps Code section of your Hubitat
+  * Create a new user app and find the LiteTouch 2000 App.
+  * Fill out the IP, port, and polling interval
+  * Create your CSV like the sample 
   * Click save
 
 Now all of your devices will show up.  As they are polled, the statuses will start updating.  Setting a load through Hubitat will poll the device immediately.  Otherwise, polling runs down a list of loads and polls one every two seconds, only to start back at the top after they've all been polled.  There are some limitations in the serial protocol which forced it to be done this way.  This means that if you have 48 total loads and you change one with a wall keypad, it could take up to 96 seconds for the Hubitat to pick it up.  
@@ -34,6 +36,5 @@ The easiest way to do this is to get a couple of RJ45->RS232 adapters.  Cisco an
 
 You should also note that the plug on the CCU side is a female plug.  So pick up a male->male gender bender while you're at it, or make sure one of the RJ45->RS232 things has male pins on it.
 
-## = Future enhancements = 
-  * Exponential dimming for those that use LED lighting.  Unfortunately, this will be a global setting for all devices controlled by the plugin, and not on a per switch basis.  There will be a variable to set the exponent value.  
-  * Ability to set the fade time for dimmers.  Again, this may be global for all dimmers controlled by the plugin.  Another limitation is that it's in whole seconds, no fractions of a second allowed because of limitations with the LiteTouch system.
+## = Known issues = 
+  * Polling is broken.  Data coming back from the polling is not being read, and the polling loop doesn't seem to be working.
