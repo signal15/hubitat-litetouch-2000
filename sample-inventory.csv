@@ -1,0 +1,44 @@
+01-1,dimmer,Master Bath Vanity
+01-2,dimmer,Dimmer Load 01-2
+01-3,dimmer,Kitchen Island
+01-4,dimmer,Master Bath Tub
+01-5,dimmer,Fireplace Recess
+01-6,dimmer,Dimmer Load 01-6
+02-1,dimmer,Conference Room Recess
+02-2,dimmer,Kitchen Counter
+02-3,dimmer,Master Recess
+02-4,dimmer,Divider Recess
+02-5,dimmer,Master Window
+02-6,dimmer,Office Ceiling
+03-1,dimmer,Dining Sconces
+03-2,dimmer,Hall Lights
+03-3,dimmer,Office Undercabinet
+03-4,dimmer,Divider Sconces
+03-5,dimmer,Shelves
+03-6,dimmer,Master Entry
+04-1,dimmer,Living Room Sconces
+04-2,dimmer,Center Recess
+04-3,dimmer,Conference Room Ceiling
+04-4,dimmer,Table Recess
+04-5,dimmer,Loft Recess
+04-6,dimmer,Master Toilet
+05-1,dimmer,Basement Hall
+05-2,dimmer,Entry Chandalier
+05-3,dimmer,Sitting Room Recess
+05-4,dimmer,Office Recess
+05-5,dimmer,Wall Recess
+05-6,dimmer,Kitchen Undercabinet
+07-1,relay,Landscape Lights
+07-2,relay,Switch Load 07-2 Bad
+07-3,relay,Outside Back
+07-4,relay,Handrail lights - not sure
+07-5,relay,Plants
+07-6,relay,Front Sconces
+08-1,relay,Under porch light
+08-2,relay,Bridge
+08-3,relay,Front Recess
+08-4,relay,Gas Fireplace
+08-5,relay,Master Shower
+08-6,relay,Basement Stairs
+09-1,relay,Loft Stairs
+09-2,relay,Pantry Undercabinet
